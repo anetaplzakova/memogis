@@ -1,0 +1,509 @@
+{
+  "themes": {
+    "title": "root",
+    "subdirs": [],
+    "items": [
+      {
+        "url": "https://webgis.mua.cas.cz/cgi-bin/qgis_mapserv.fcgi?map=/webdata/HGIS_cze/memogis_prague_CZE_pol.qgz",
+        "id": "memogis_prague_CZE_pol.qgz",
+        "name": "MemoGIS_Praha",
+        "title": "MemoGIS Praha",
+        "description": "",
+        "attribution": {
+          "Title": "MÚA AVČR, ITI",
+          "OnlineResource": "https://ehri.cz/memogis_cs.html#howto_credit"
+        },
+        "abstract": "Tento historický GIS umožňuje zkoumat data o holokaustu přímo ve vztahu k prostoru města Prahy. Vrací oběti holokaustu na mapu města skrze jejich předdeportační adresy, ukazuje body zájmu a identifikuje incidenty (například zatčení za porušení protižidovských nařízení). GIS může být pužíván z počítače nebo na mobilních zařízeních přímo v prostoru města. Vytvoření aplikace bylo podpořeno Technologickou agenturou ČR.",
+        "keywords": "Holocaust; Praha; Prague; HGIS",
+        "onlineResource": "https://webgis.mua.cas.cz:443/cgi-bin/qgis_mapserv.fcgi?map=%2Fwebdata%2FHGIS_cze%2Fmemogis_prague_CZE_pol.qgz",
+        "contact": {
+          "person": "unknown",
+          "organization": "Masarykův ústav a Archiv AV ČR",
+          "position": "",
+          "phone": "",
+          "email": ""
+        },
+        "availableFormats": [
+          "image/jpeg",
+          "image/png",
+          "image/png; mode=16bit",
+          "image/png; mode=8bit",
+          "image/png; mode=1bit",
+          "application/dxf"
+        ],
+        "version": "1.3.0",
+        "infoFormats": [
+          "text/plain",
+          "text/html",
+          "text/xml",
+          "application/vnd.ogc.gml",
+          "application/vnd.ogc.gml/3.1.1",
+          "application/json",
+          "application/geo+json"
+        ],
+        "bbox": {
+          "crs": "EPSG:4326",
+          "bounds": [
+            14.276809,
+            50.01793,
+            14.567354,
+            50.149072
+          ]
+        },
+        "initialBbox": {
+          "crs": "EPSG:4326",
+          "bounds": [
+            14.276809,
+            50.01793,
+            14.567354,
+            50.149072
+          ]
+        },
+        "scales": [
+          80000,
+          60000,
+          40000,
+          30000,
+          20000,
+          15000,
+          10000,
+          9000,
+          8000,
+          7000,
+          6000,
+          5000,
+          4000,
+          3000,
+          2000,
+          1500,
+          1000,
+          500,
+          250,
+          100
+        ],
+        "printScales": [
+          80000,
+          40000,
+          20000,
+          10000,
+          8000,
+          6000,
+          4000,
+          2000,
+          1000,
+          500,
+          250,
+          100
+        ],
+        "printResolutions": [
+          150,
+          300,
+          600
+        ],
+        "sublayers": [
+          {
+            "name": "Statistika",
+            "title": "Statistika pražských čtvrtí",
+            "geometryType": "Point",
+            "visibility": true,
+            "queryable": false,
+            "attribution": {
+              "Title": "ITI, MÚA",
+              "OnlineResource": ""
+            },
+            "abstract": "Informace o počtu židovských obyvatel, incidentů a bodů zájmu v jednotlivých pražských čtvrtí. \n\nPro zobrazení detailů přibližte mapu.",
+            "opacity": 255,
+            "minScale": 15000,
+            "maxScale": 100000000,
+            "bbox": {
+              "crs": "EPSG:4326",
+              "bounds": [
+                14.369812,
+                50.045477,
+                14.505072,
+                50.107605
+              ]
+            }
+          },
+          {
+            "name": "Incidenty_v_prostoru_mesta_Prahy",
+            "title": "Incidenty v prostoru města Prahy",
+            "geometryType": "Point",
+            "visibility": true,
+            "queryable": true,
+            "displayField": "description",
+            "attribution": {
+              "Title": "MÚA",
+              "OnlineResource": ""
+            },
+            "abstract": "Incidenty v prostoru města Prahy, při nichž byli židovští obyvatelé zatčeni či vyšetřováni pro porušení protižidovských nařízení. Údaje byly v rámci projektu MemoMap Praha vyexcerpovány z digitalizovaných dokumentů pražské policie. Jde například o informace o nedodržování prostorových zákazů, o občanských průkazech neoznačených písmenem \"J\" (Jude), apod.",
+            "opacity": 205,
+            "minScale": 0,
+            "maxScale": 15000,
+            "bbox": {
+              "crs": "EPSG:4326",
+              "bounds": [
+                13.368119,
+                49.736288,
+                14.502147,
+                50.134765
+              ]
+            }
+          },
+          {
+            "name": "Body_zajmu",
+            "title": "Body zájmu v prostoru města Prahy",
+            "geometryType": "Point",
+            "visibility": true,
+            "queryable": true,
+            "displayField": "description",
+            "attribution": {
+              "Title": "MÚA",
+              "OnlineResource": ""
+            },
+            "abstract": "Body zájmu zahrnující místa pronásledování, židovské objekty a sklady zabaveného majetku.",
+            "opacity": 255,
+            "minScale": 0,
+            "maxScale": 15000,
+            "bbox": {
+              "crs": "EPSG:4326",
+              "bounds": [
+                14.320598,
+                50.027578,
+                14.600954,
+                50.131982
+              ]
+            }
+          },
+          {
+            "name": "Bydliste_Zidu_v_Praze_v_dobe_okupace",
+            "title": "Bydliště Židů v Praze v době okupace",
+            "geometryType": "Point",
+            "visibility": true,
+            "queryable": true,
+            "displayField": "street_cs",
+            "attribution": {
+              "Title": "ITI, MÚA",
+              "OnlineResource": ""
+            },
+            "abstract": "Adresy, na nichž podle databáze obětí, bydleli v době šoa židovští obyvatelé Prahy. Údaje většinou pocházejí z registrace Židů v Protektorátu, která byla na základě nařízení Ústředny pro židovské vystěhovalectví zahájena na podzim 1941. Vrstva zahrnuje údaje o počtu obyvatel jednotlivých domů, statistiku jejich osudů a počet přítomných k různým historickým datům.\n\nV některých případech, kdy bylo obtížné jednotlivé domy identifikovat, je pod stejnými koordináty seskupeno více adres (například v jedné ulici). Na zpřesnění umístění na mapě průběžně pracujeme. Použity jsou názvy ulic z doby okupace (cca 1941-1942).",
+            "opacity": 217,
+            "minScale": 0,
+            "maxScale": 15000,
+            "bbox": {
+              "crs": "EPSG:4326",
+              "bounds": [
+                13.92408,
+                49.9775,
+                14.663805,
+                50.143493
+              ]
+            }
+          },
+          {
+            "name": "Obeti_holokaustu_z_Prahy",
+            "title": "Oběti holokaustu z Prahy",
+            "geometryType": "Point",
+            "visibility": true,
+            "queryable": true,
+            "displayField": "Jméno (datum narození)",
+            "attribution": {
+              "Title": "ITI",
+              "OnlineResource": ""
+            },
+            "abstract": "Databáze židovských obyvatel Prahy, kteří zahynuli v důsledku nacistického pronásledování. Záznamy jsou navázané na jejich pražské adresy. Detaily jsou přístupné skrze odkazy na portál holocaust.cz.",
+            "opacity": 255,
+            "minScale": 0,
+            "maxScale": 15000,
+            "bbox": {
+              "crs": "EPSG:4326",
+              "bounds": [
+                14.294882,
+                49.9775,
+                14.663805,
+                50.143493
+              ]
+            }
+          },
+          {
+            "name": "Neprisupna_mista",
+            "title": "Nepřístupná místa v prostoru města Prahy",
+            "geometryType": "MultiPolygon",
+            "visibility": true,
+            "queryable": true,
+            "displayField": "Popis",
+            "attribution": {
+              "Title": "MÚA",
+              "OnlineResource": ""
+            },
+            "abstract": "Místa nepřístupná Židům.\nProstoové zobrazení je založeno na historické mapě z roku 1938, současné prostory se mohou lišit velikostí i tvarem.",
+            "opacity": 255,
+            "bbox": {
+              "crs": "EPSG:4326",
+              "bounds": [
+                14.29751,
+                50.016513,
+                14.487828,
+                50.119793
+              ]
+            }
+          },
+          {
+            "name": "Historicka_mapa_Prahy",
+            "title": "Historická mapa Prahy (1938)",
+            "visibility": true,
+            "queryable": false,
+            "attribution": {
+              "Title": "MLP",
+              "OnlineResource": ""
+            },
+            "abstract": "Orientační plán hlavního města Prahy s okolím (1938). Do digitální podoby zpracovala Městská knihovna v Praze, georeferencování provedl Masarykův ústav a archiv Akademie věd České republiky. Dostupný také z WWW: http://web2.mlp.cz/mapa1938/klad.php.",
+            "dataUrl": "",
+            "opacity": 255,
+            "bbox": {
+              "crs": "EPSG:4326",
+              "bounds": [
+                -180,
+                -85.051129,
+                180,
+                85.051129
+              ]
+            }
+          }
+        ],
+        "expanded": true,
+        "externalLayers": [
+          {
+            "internalLayer": "Historicka_mapa_Prahy",
+            "name": "wms:https://geodata.ehri-project-test.eu/geoserver/ehri/wms#MGS-prague_historical_map_1938-v2"
+          }
+        ],
+        "backgroundLayers": [
+          {
+            "name": "mapnik",
+            "visibility": true
+          },
+          {
+            "name": "opentopomap"
+          }
+        ],
+        "searchProviders": [
+          "coordinates",
+          "nominatim"
+        ],
+        "additionalMouseCrs": [
+          "EPSG:21781",
+          "EPSG:2056"
+        ],
+        "mapCrs": "EPSG:3857",
+        "print": [
+          {
+            "name": "2",
+            "map": {
+              "name": "map0",
+              "width": 248.815,
+              "height": 152.5975547990527
+            }
+          },
+          {
+            "name": "1",
+            "map": {
+              "name": "map0",
+              "width": 290.003,
+              "height": 203.5760291035502
+            }
+          }
+        ],
+        "drawingOrder": [
+          "Historicka_mapa_Prahy",
+          "Neprisupna_mista",
+          "Obeti_holokaustu_z_Prahy",
+          "Bydliste_Zidu_v_Praze_v_dobe_okupace",
+          "Body_zajmu",
+          "Incidenty_v_prostoru_mesta_Prahy",
+          "Statistika"
+        ],
+        "legendUrl": "https://webgis.mua.cas.cz:443/cgi-bin/qgis_mapserv.fcgi?map=%2Fwebdata%2FHGIS_cze%2Fmemogis_prague_CZE_pol.qgz&?",
+        "featureInfoUrl": "https://webgis.mua.cas.cz:443/cgi-bin/qgis_mapserv.fcgi?map=%2Fwebdata%2FHGIS_cze%2Fmemogis_prague_CZE_pol.qgz&?",
+        "printUrl": "https://webgis.mua.cas.cz:443/cgi-bin/qgis_mapserv.fcgi?map=%2Fwebdata%2FHGIS_cze%2Fmemogis_prague_CZE_pol.qgz&?",
+        "editConfig": null,
+        "thumbnail": "img/genmapthumbs/memogis_prague_CZE_pol.qgz.png"
+      }
+    ],
+    "defaultTheme": "memogis_prague_CZE_pol.qgz",
+    "defaultScales": [
+      4000000,
+      2000000,
+      1000000,
+      400000,
+      200000,
+      80000,
+      40000,
+      20000,
+      10000,
+      8000,
+      6000,
+      4000,
+      2000,
+      1000,
+      500,
+      250,
+      100
+    ],
+    "defaultPrintGrid": [
+      {
+        "s": 10000,
+        "x": 1000,
+        "y": 1000
+      },
+      {
+        "s": 1000,
+        "x": 100,
+        "y": 100
+      },
+      {
+        "s": 100,
+        "x": 10,
+        "y": 10
+      }
+    ],
+    "externalLayers": [
+      {
+        "name": "wms:https://geodata.ehri-project-test.eu/geoserver/ehri/wms#MGS-prague_historical_map_1938-v2",
+        "type": "wms",
+        "url": "https://geodata.ehri-project-test.eu/geoserver/ehri/wms",
+        "params": {
+          "LAYERS": "MGS-prague_historical_map_1938-v2"
+        },
+        "infoFormats": [
+          "text/plain"
+        ]
+      }
+    ],
+    "backgroundLayers": [
+      {
+        "name": "mapnik",
+        "title": "Open Street Map",
+        "type": "osm",
+        "source": "osm",
+        "thumbnail": "img/mapthumbs/mapnik.jpg",
+        "attribution": {
+          "Title": "OpenStreetMap contributors",
+          "OnlineResource": "https://www.openstreetmap.org/copyright"
+        }
+      },
+      {
+        "name": "StamenToner",
+        "title": "Stamen Toner/OSM",
+        "group": "stamen",
+        "type": "tileprovider",
+        "source": "stamen",
+        "provider": "Stamen.Toner",
+        "attribution": {},
+        "thumbnail": "img/mapthumbs/default.jpg"
+      },
+      {
+        "type": "wms",
+        "url": "https://maps.omniscale.net/v2/swl-33d96aa8/style.default/map",
+        "title": "osm",
+        "name": "osm",
+        "srs": "EPSG:25832",
+        "params": {
+          "LAYERS": "osm",
+          "STYLES": "",
+          "VERSION": "1.1.1"
+        },
+        "thumbnail": "img/mapthumbs/default.jpg",
+        "attribution": {}
+      },
+      {
+        "type": "tileprovider",
+        "provider": "OpenTopoMap",
+        "title": "OpenTopoMap",
+        "name": "opentopomap",
+        "thumbnail": "img/mapthumbs/default.jpg",
+        "attribution": {
+          "Title": "Map data: &copy; <a href=\"https://openstreetmap.org/copyright\" target=\"_blank\">OpenStreetMap</a> contributors, SRTM | Map style: &copy; <a href=\"https://opentopomap.org\" target=\"_blank\">OpenTopoMap</a> (<a href=\"https://creativecommons.org/licenses/by-sa/3.0/\" target=\"_blank\">CC-BY-SA</a>)"
+        }
+      },
+      {
+        "type": "wmts",
+        "url": "https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/2056/{TileMatrix}/{TileCol}/{TileRow}.jpeg",
+        "title": "swisstopo.pixelkarte-farbe",
+        "name": "swisstopo.pixelkarte-farbe",
+        "tileMatrixPrefix": "",
+        "tileMatrixSet": "2056_26",
+        "originX": 2420000,
+        "originY": 1350000,
+        "projection:": "EPSG:2056",
+        "resolutions": [
+          4000,
+          3750,
+          3500,
+          3250,
+          3000,
+          2750,
+          2500,
+          2250,
+          2000,
+          1750,
+          1500,
+          1250,
+          1000,
+          750,
+          650,
+          500,
+          250,
+          100,
+          50,
+          20,
+          10,
+          5,
+          2.5,
+          2,
+          1.5,
+          1,
+          0.5,
+          0.25
+        ],
+        "tileSize": [
+          256,
+          256
+        ],
+        "attribution": {
+          "Title": {
+            "Title": "Hintergrundkarte &copy; <a href=\"https://www.swisstopo.ch\" target=\"_blank\">swisstopo</a>"
+          }
+        },
+        "thumbnail": "img/mapthumbs/default.jpg"
+      },
+      {
+        "type": "wms",
+        "name": "av_grundbuchplan-color",
+        "title": "av_grundbuchplan-color",
+        "url": "https://iap-map.gl.ch/ows/mainmap",
+        "params": {
+          "LAYERS": "ch.gl.cadastre.av_grundbuchplan-color",
+          "STYLES": "default"
+        },
+        "attribution": {},
+        "thumbnail": "img/mapthumbs/default.jpg"
+      },
+      {
+        "name": "luftbild_zh_2015",
+        "title": "Luftbild ZH 2015",
+        "type": "wms",
+        "url": "http://localhost/qgis/qgis_mapserv.fcgi",
+        "params": {
+          "LAYERS": "Orthofoto_2015_stdzh_0.5_jpeg",
+          "STYLES": "default",
+          "VERSION": "1.3.0",
+          "MAP": "/home/sandro/wms/luftbild_zh.qgs"
+        },
+        "attribution": {},
+        "thumbnail": "img/mapthumbs/default.jpg"
+      }
+    ],
+    "defaultWMSVersion": "1.3.0"
+  }
+}

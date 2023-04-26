@@ -72,7 +72,6 @@ Format of search results:
 import axios from 'axios';
 import {addSearchResults, SearchResultType} from "qwc2/actions/search";
 import CoordinatesUtils from 'qwc2/utils/CoordinatesUtils';
-import LocaleUtils from 'qwc2/utils/LocaleUtils';
 
 function coordinatesSearch(text, requestId, searchOptions, dispatch) {
     const displaycrs = searchOptions.displaycrs || "EPSG:4326";
@@ -230,6 +229,113 @@ function usterResultGeometry(resultItem, callback) {
 
 /** ************************************************************************ **/
 
+function wolfsburgSearch(text, requestId, searchOptions, dispatch) {
+    axios.get("https://geoportal.stadt.wolfsburg.de/wsgi/search.wsgi", {params: {
+        query: text,
+        searchTables: '["Infrastruktur", "Stadt- und Ortsteile"]',
+        searchFilters: '["Abfallwirtschaft,Haltestellen,Hilfsorganisationen", ""]',
+        searchArea: "Wolfsburg",
+        searchCenter: "",
+        searchRadius: "",
+        topic: "stadtplan",
+        resultLimit: 100,
+        resultLimitCategory: 100
+    }}).then(response => dispatch(wolfsburgSearchResults(response.data, requestId)));
+}
+
+function wolfsburgSearchResults(obj, requestId) {
+    const results = [];
+    let currentgroup = null;
+    let groupcounter = 0;
+    let counter = 0;
+    (obj.results || []).map(entry => {
+        if (!entry.bbox) {
+            // Is group
+            currentgroup = {
+                id: "wolfsburggroup" + (groupcounter++),
+                title: entry.displaytext,
+                items: []
+            };
+            results.push(currentgroup);
+        } else if (currentgroup) {
+            currentgroup.items.push({
+                id: "wolfsburgresult" + (counter++),
+                text: entry.displaytext,
+                searchtable: entry.searchtable,
+                oid: entry.id,
+                bbox: entry.bbox.slice(0),
+                x: 0.5 * (entry.bbox[0] + entry.bbox[2]),
+                y: 0.5 * (entry.bbox[1] + entry.bbox[3]),
+                crs: "EPSG:25832",
+                provider: "wolfsburg"
+            });
+        }
+    });
+    return addSearchResults({data: results, provider: "wolfsburg", reqId: requestId}, true);
+}
+
+function wolfsburgResultGeometry(resultItem, callback) {
+    axios.get("https://geoportal.stadt.wolfsburg.de/wsgi/getSearchGeom.wsgi", {params: {
+        searchtable: resultItem.searchtable,
+        id: resultItem.oid
+    }}).then(response => callback(resultItem, response.data, "EPSG:25832"));
+}
+
+/** ************************************************************************ **/
+
+function glarusSearch(text, requestId, searchOptions, dispatch) {
+    const limit = 9;
+    axios.get("https://map.geo.gl.ch/search/all?limit=" + limit + "&query=" + encodeURIComponent(text))
+        .then(response => dispatch(glarusSearchResults(response.data, requestId, limit)))
+        .catch(() => dispatch(glarusSearchResults({}, requestId, limit)));
+}
+
+function glarusMoreResults(moreItem, text, requestId, dispatch) {
+    axios.get("https://map.geo.gl.ch/search/" + moreItem.category + "?query=" + encodeURIComponent(text))
+        .then(response => dispatch(glarusSearchResults(response.data, requestId)))
+        .catch(() => dispatch(glarusSearchResults({}, requestId)));
+}
+
+function glarusSearchResults(obj, requestId, limit = -1) {
+    const results = [];
+    let idcounter = 0;
+    (obj.results || []).map(group => {
+        const groupResult = {
+            id: group.category,
+            title: group.name,
+            items: group.features.map(item => {
+                return {
+                    id: item.id,
+                    text: item.name,
+                    bbox: item.bbox.slice(0),
+                    x: 0.5 * (item.bbox[0] + item.bbox[2]),
+                    y: 0.5 * (item.bbox[1] + item.bbox[3]),
+                    crs: "EPSG:2056",
+                    provider: "glarus",
+                    category: group.category
+                };
+            })
+        };
+        if (limit >= 0 && group.features.length > limit) {
+            groupResult.items.push({
+                id: "glarusmore" + (idcounter++),
+                more: true,
+                provider: "glarus",
+                category: group.category
+            });
+        }
+        results.push(groupResult);
+    });
+    return addSearchResults({data: results, provider: "glarus", reqId: requestId}, true);
+}
+
+function glarusResultGeometry(resultItem, callback) {
+    axios.get("https://map.geo.gl.ch/search/" + resultItem.category + "/geometry?id=" + resultItem.id)
+        .then(response => callback(resultItem, response.data, "EPSG:2056"));
+}
+
+/** ************************************************************************ **/
+
 function nominatimSearchResults(obj, requestId) {
     const results = [];
     const groups = {};
@@ -240,7 +346,7 @@ function nominatimSearchResults(obj, requestId) {
             groups[entry.class] = {
                 id: "nominatimgroup" + (groupcounter++),
                 // capitalize class
-                title: LocaleUtils.trWithFallback("search.nominatim." + entry.class, entry.class.charAt(0).toUpperCase() + entry.class.slice(1)),
+                title: entry.class.charAt(0).toUpperCase() + entry.class.slice(1),
                 items: []
             };
             results.push(groups[entry.class]);
@@ -279,7 +385,6 @@ function nominatimSearchResults(obj, requestId) {
             text: text,
             label: label,
             bbox: bbox,
-            geometry: entry.geojson,
             x: 0.5 * (bbox[0] + bbox[2]),
             y: 0.5 * (bbox[1] + bbox[3]),
             crs: "EPSG:4326",
@@ -291,12 +396,10 @@ function nominatimSearchResults(obj, requestId) {
 
 function nominatimSearch(text, requestId, searchOptions, dispatch) {
     axios.get("//nominatim.openstreetmap.org/search", {params: {
-        'q': text,
-        'addressdetails': 1,
-        'polygon_geojson': 1,
-        'limit': 20,
-        'format': 'json',
-        'accept-language': LocaleUtils.lang()
+        q: text,
+        addressdetails: 1,
+        limit: 20,
+        format: 'json'
     }}).then(response => dispatch(nominatimSearchResults(response.data, requestId)));
 }
 
@@ -313,12 +416,12 @@ function parametrizedSearch(cfg, text, requestId, searchOptions, dispatch) {
 
 function layerSearch(text, requestId, searchOptions, dispatch) {
     const results = [];
-    if (text === "bahnhof") {
+    if (text) {
         const layer = {
             sublayers: [
                 {
-                    name: "a",
-                    title: "a",
+                    name: "incidents",
+                    title: "Incidents",
                     visibility: true,
                     queryable: true,
                     displayField: "maptip",
@@ -351,11 +454,11 @@ function layerSearch(text, requestId, searchOptions, dispatch) {
 
 /** ************************************************************************ **/
 
-export const SearchProviders = {
+export const SearchProviders = {/**
     coordinates: {
         labelmsgid: "search.coordinates",
         onSearch: coordinatesSearch
-    },
+    }, 
     geoadmin: {
         label: "Swisstopo",
         onSearch: geoAdminLocationSearch,
@@ -366,14 +469,25 @@ export const SearchProviders = {
         onSearch: usterSearch,
         getResultGeometry: usterResultGeometry
     },
+    wolfsburg: {
+        label: "Wolfsburg",
+        onSearch: wolfsburgSearch,
+        getResultGeometry: wolfsburgResultGeometry
+    },
+    glarus: {
+        label: "Glarus",
+        onSearch: glarusSearch,
+        getResultGeometry: glarusResultGeometry,
+        getMoreResults: glarusMoreResults
+    },
     nominatim: {
         label: "OpenStreetMap",
         onSearch: nominatimSearch
-    },
+    }, 
     layers: {
         label: "Layers",
         onSearch: layerSearch
-    }
+    }**/
 };
 
 export function searchProviderFactory(cfg) {

@@ -24,14 +24,13 @@ import TaskButtonPlugin from 'qwc2/plugins/TaskButton';
 import BackgroundSwitcherPlugin from 'qwc2/plugins/BackgroundSwitcher';
 import TopBarPlugin from 'qwc2/plugins/TopBar';
 import AppMenu from 'qwc2/components/AppMenu';
-import SearchBox from 'qwc2/components/SearchBox';
+import Search from 'qwc2/components/Search';
 import Toolbar from 'qwc2/components/Toolbar';
 import FullscreenSwitcher from 'qwc2/components/FullscreenSwitcher';
 import BottomBarPlugin from 'qwc2/plugins/BottomBar';
 import MeasurePlugin from 'qwc2/plugins/Measure';
 import ThemeSwitcherPlugin from 'qwc2/plugins/ThemeSwitcher';
 import LayerTreePlugin from 'qwc2/plugins/LayerTree';
-import LayerCatalogPlugin from 'qwc2/plugins/LayerCatalog';
 import IdentifyPlugin from 'qwc2/plugins/Identify';
 import MapTipPlugin from 'qwc2/plugins/MapTip';
 import SharePlugin from 'qwc2/plugins/Share';
@@ -49,12 +48,10 @@ import MapInfoTooltipPlugin from 'qwc2/plugins/MapInfoTooltip';
 import StartupMarkerPlugin from 'qwc2/plugins/StartupMarker';
 import ScratchDrawingPlugin from 'qwc2/plugins/ScratchDrawing';
 import AuthenticationPlugin from 'qwc2/plugins/Authentication';
-import BookmarkPlugin from 'qwc2/plugins/Bookmark';
-import AttributeTablePlugin from 'qwc2/plugins/AttributeTable';
 import APIPlugin from 'qwc2/plugins/API';
 import {customAttributeCalculator} from './CustomAttributeCalculator';
 
-import defaultLocaleData from '../static/translations/en-US.json';
+import defaultLocaleData from '../translations/cs-CZ.json';
 
 export default {
     defaultLocaleData: defaultLocaleData,
@@ -80,8 +77,8 @@ export default {
             TaskButtonPlugin: TaskButtonPlugin,
             BackgroundSwitcherPlugin: BackgroundSwitcherPlugin,
             TopBarPlugin: TopBarPlugin({
+                Search: Search(SearchProviders, searchProviderFactory),
                 AppMenu: AppMenu,
-                Search: SearchBox(SearchProviders, searchProviderFactory),
                 Toolbar: Toolbar,
                 FullscreenSwitcher: FullscreenSwitcher
             }),
@@ -89,7 +86,6 @@ export default {
             MeasurePlugin: MeasurePlugin,
             ThemeSwitcherPlugin: ThemeSwitcherPlugin,
             LayerTreePlugin: LayerTreePlugin,
-            LayerCatalogPlugin: LayerCatalogPlugin,
             IdentifyPlugin: IdentifyPlugin,
             MapTipPlugin: MapTipPlugin,
             SharePlugin: SharePlugin,
@@ -110,8 +106,6 @@ export default {
             StartupMarkerPlugin: StartupMarkerPlugin,
             ScratchDrawingPlugin: ScratchDrawingPlugin,
             AuthenticationPlugin: AuthenticationPlugin,
-            BookmarkPlugin: BookmarkPlugin,
-            AttributeTablePlugin: AttributeTablePlugin(),
             APIPlugin: APIPlugin
         },
         cfg: {

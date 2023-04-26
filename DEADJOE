@@ -1,0 +1,24 @@
+
+*** These modified files were found in JOE when it aborted on Wed Oct  6 22:26:27 2021
+*** JOE was aborted because the terminal closed
+
+*** File '(Unnamed)'
+themesConfig.json
+themesConfig.json
+themesConfig.json
+styleConfig.js
+config.json
+victims_addresses+header.csv
+victims_addresses+header.csv
+victims_addresses+header.csv
+victims_addresses+header.csv
+victims_addresses+header.csv
+themesConfig.json
+themesConfig.json
+themesConfig.json
+
+*** File '* Startup Log *'
+Processing '/etc/joe/joerc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc

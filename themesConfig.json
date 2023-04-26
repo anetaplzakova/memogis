@@ -2,7 +2,7 @@
     "themes":{
         "items":[
             {
-                "url":"https://webgis.mua.cas.cz/cgi-bin/qgis_mapserv.fcgi?map=/webdata/HGIS_clean/memogis_prague5_CZE.qgz",
+                "url":"https://webgis.mua.cas.cz/cgi-bin/qgis_mapserv.fcgi?map=/webdata/HGIS_cze/memogis_prague_CZE_pol.qgz",
                 "attribution":"MÚA AVČR, ITI",
                 "attributionUrl":"https://ehri.cz/memogis_cs.html#howto_credit",
 				"scales":[
